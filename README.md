@@ -1,28 +1,81 @@
-# CS2 External ESP (Recode)
+#  CS2 External ESP (Recode)
 
-**Custom fork based on IMXNOOBX's base.**
+qq Это мой кастомный форк внешнего чита для CS2, сделанный на базе исходников **IMXNOOBX**. 
+Проект пишется чисто для себя (и для тех, кому интересно покопаться в коде), но я решил выложить его в паблик.
 
-## ⚠️ Disclaimer
-This project is for educational purposes only. Use at your own risk. The author is not responsible for any bans or damage caused by this software.
+![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Working-brightgreen?style=for-the-badge)
+![Security](https://img.shields.io/badge/Security-Indirect%20Syscalls-blueviolet?style=for-the-badge)
 
-## ✨ Features
-- **Visuals:** Box ESP (Normal & Corner), Skeleton, Health, Armor, Name, Distance.
-- **Combat:** RCS (No Recoil), Triggerbot (with customizable delay), Aim Assist (customizable FOV & Smooth).
-- **Misc:** Bhop, Hit/Kill Sounds, Auto-Accept.
-- **Security:** Indirect Syscalls (bypasses ntdll hooks), FNV-1a String Hashing, 100% Offline Mode.
+---
 
-## 🚀 How to use
-1. Download the latest `.exe` from the **[Releases](../../releases)** page.
-2. Run `cs2-external-esp.exe` as Administrator.
-3. Launch CS2 in **Windowed Fullscreen** mode.
-4. Press **Insert** or **Right Shift** to open the menu.
+## ⚠️ Дисклеймер (Обязательно к прочтению)
+Этот проект создан **исключительно в образовательных целях** (изучение C++, работы с памятью Windows и обхода хуков античитов). 
+Я не несу ответственности, если ты получишь VAC-бан, кулдаун или твой аккаунт улетит в бан. **Играй на свой страх и риск** и не используй это на аккаунтах с дорогими скинами. Никаких вирусов, майнеров или стилеров тут нет — исходники открыты, можете проверить сами.
 
-## 🛠️ Build
-- **Visual Studio 2022**
-- **Configuration:** Release | x64
-- Make sure to compile with `/MT` (Static Runtime) and `/O1` (Size Optimization).
+---
 
-## 🛡️ Security Status
-- **Syscalls:** ACTIVE
-- **String Obfuscation:** ACTIVE
-- **Network Traffic:** NONE (Offline)
+##  Что тут есть? (Фичи)
+
+** Player ESP (Визуалы):**
+*   **Box ESP** — классические 2D боксы и Corner (уголки). Можно менять цвет и толщину.
+*   **Skeleton** — скелет врагов (линии костей).
+*   **Health & Armor** — полоски здоровья и брони (есть текстовый режим HP).
+*   **Info** — показ имени, дистанции до врага и оружия в руках.
+*   **Tracers** — линии от центра экрана до врага.
+*   **Movement Trail** — красивый неоновый след за противником (с настройкой толщины).
+
+** World ESP (Мир):**
+*   **Bomb ESP** — инфо о бомбе (заложена, таймер, сайт).
+
+** Combat (Бой):**
+*   **RCS (No Recoil)** — компенсация отдачи.
+*   **Triggerbot** — автовыстрел с настройкой задержки.
+*   **Aim Assist** — помощь в наведении (с настройкой FOV, Smoothing и Humanize).
+*   *(Совет: с аимом аккуратнее, VACnet сейчас злой).*
+
+** Movement (Движение):**
+*   **Bunnyhop** — автоматический банихоп.
+*   **Auto-Stop** — авто-контрстрейф для точной стрельбы.
+*   **Fake Peek** — эмуляция фейк-пика.
+*   **Auto Accept** — автопринятие игры.
+
+** Misc & Security (Безопасность):**
+*   **Streamproof** — меню и ESP не видно на стримах/скринах (WDA_EXCLUDEFROMCAPTURE).
+*   **Hit/Kill Sounds** — кастомные звуки попадания и убийства (можно закинуть свои .wav).
+*   **100% Offline Mode** — чит не отправляет никакой телеметрии в сеть.
+*   **Indirect Syscalls** — чтение памяти в обход хуков ntdll (AV/EDR не видят).
+*   **FNV-1a String Hashing** — все строки в коде зашифрованы.
+*   **PANIC (Wipe)** — экстренное удаление чита (и следов) с ПК.
+
+---
+
+## Как собрать (Build)
+
+Если ты хочешь скомпилировать чит сам (что безопаснее, чем качать готовый exe):
+1. Скачай и установи **Visual Studio 2022** (с рабочей нагрузкой "Разработка классических приложений на C++").
+2. Открой файл `cs2-external-esp.sln`.
+3. Вверху выбери **Release** и **x64** (обязательно!).
+4. Нажми `Ctrl + Shift + B` (Собрать решение).
+5. Готовый `.exe` будет лежать в папке `x64/Release/`.
+
+---
+
+##  FAQ / Частые вопросы
+
+*   **Это точно не вирус?** 
+    Да, код открыт. Тут используются только стандартные WinAPI вызовы для чтения памяти и ImGui для отрисовки.
+*   **Почему выкидывает с сервера?**
+    Скорее всего, VACnet засек слишком агрессивный аим или триггербот. Для безопасной игры оставляй только ESP (визуалы).
+*   **Не работает Fake Peek / Auto-Stop?**
+    Убедись, что игра запущена в оконном/безрамочном режиме и окно чита активно.
+    Defender может ругаться тк это чит,это я уе никак не пофикшу
+
+---
+
+## 🙏 Благодарности
+*   **IMXNOOBX** — за базовый каркас и отличный дизайн меню.
+*   Сообществу — за дампы оффсетов и идеи по улучшению.
+
+*Сделано с душой и любовью к C++. Удачи в игре!* 
